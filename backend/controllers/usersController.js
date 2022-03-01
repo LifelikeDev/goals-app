@@ -18,7 +18,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const userPresent = await User.findOne({ email });
 
   if (userPresent) {
-    res.status(400)
+    res.status(400);
     throw new Error(`${name} already exists...`);
   }
 
@@ -40,7 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
     });
   } else {
-    res.status(401)
+    res.status(401);
     throw new Error("Error creating user: Invalid user data...");
   }
 });
@@ -49,7 +49,22 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route POST /api/users/login
 // @access Public
 const loginUser = asyncHandler(async (req, res) => {
-  res.json({ message: "User logged in" });
+  const { email, password } = req.body;
+
+  // check if user exists
+  const user = await User.findOne({ email });
+
+  // compare password and validate user
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.status(201).json({
+      _id: user.id,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid login credentials...");
+  }
 });
 
 // @desc Get User Data
