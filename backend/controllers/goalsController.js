@@ -5,9 +5,9 @@ const Goal = require("../models/goalModel");
 // @route GET /api/goals
 // @access Private
 const getGoals = asyncHandler(async (req, res) => {
-  const allGoals = await Goal.find();
+  const userGoals = await Goal.find({ user: req.user.id })
 
-  res.status(200).json(allGoals);
+  res.status(200).json(userGoals);
 });
 
 // @desc Add Goal
@@ -15,13 +15,14 @@ const getGoals = asyncHandler(async (req, res) => {
 // @access Private
 const addGoal = asyncHandler(async (req, res) => {
   const text = req.body.text;
+  const userId = req.user.id;
 
   if (!text) {
     res.status(400);
     throw new Error("Enter a valid goal...");
   }
 
-  const newGoal = await Goal.create({ text: text });
+  const newGoal = await Goal.create({ text, user: userId });
 
   res.status(200).json(newGoal);
 });
