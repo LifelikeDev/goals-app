@@ -11,9 +11,17 @@ const Register = () => {
 
   const { name, email, password, confirmedPassword } = formData;
 
-  const handleFormChange = () => {};
+  const handleFormChange = (e) => {
+    setFormData((previousState) => ({
+      ...previousState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-  const handleFormSubmit = () => {};
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    window.alert("form submitted...");
+  };
 
   return (
     <>
@@ -33,7 +41,7 @@ const Register = () => {
               id="name"
               name="name"
               value={name}
-              placeholder="Enter your name"
+              placeholder="Enter name"
               onChange={handleFormChange}
             />
           </div>
@@ -44,7 +52,7 @@ const Register = () => {
               id="email"
               name="email"
               value={email}
-              placeholder="Enter your email"
+              placeholder="Enter email"
               onChange={handleFormChange}
             />
           </div>
