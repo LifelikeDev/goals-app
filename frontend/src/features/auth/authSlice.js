@@ -10,11 +10,21 @@ const initialState = {
   message: "",
 };
 
+// Register User
+export const register = createAsyncThunk("auth/register", async(user, thunkAPI) => {
+    try {
+    
+    } catch(error) {
+        
+    }
+})
+
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    reset: () => {
+    reset: (state) => {
       state.isError = false;
       state.isSuccess = false;
       state.isLoading = false;
