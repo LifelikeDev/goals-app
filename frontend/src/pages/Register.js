@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
+import { register, reset } from "../features/auth/authSlice";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +14,11 @@ const Register = () => {
   });
 
   const { name, email, password, confirmedPassword } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const {user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
 
   const handleFormChange = (e) => {
     setFormData((previousState) => ({
