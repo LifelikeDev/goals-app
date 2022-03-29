@@ -20,6 +20,20 @@ const Register = () => {
 
   const {user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
 
+  // useEffect
+  useEffect(() => {
+    if(isError) {
+      toast.error(message);
+    }
+
+    if(isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+
+  }, [user, isLoading, isSuccess, isError, message, navigate, dispatch])
+
   const handleFormChange = (e) => {
     setFormData((previousState) => ({
       ...previousState,
@@ -29,7 +43,15 @@ const Register = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    window.alert("form submitted...");
+
+    if (password !== confirmedPassword) {
+      toast.error("Passwords do not match");
+    } else {
+      const userData = { name, email, password };
+
+      dispatch(userData);
+    }
+    
   };
 
   return (
