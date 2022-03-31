@@ -25,16 +25,16 @@ const Header = () => {
       <ul>
         {user ? (
           <li>
-            <Link to="/logout">
+            <button className="btn" onClick={handleLogout}>
               <FaSignOutAlt /> Logout
-            </Link>
+            </button>
           </li>
         ) : (
           <>
             <li>
-              <button className="btn" onClick={handleLogout}>
+              <Link to="/login">
                 <FaSignInAlt /> Login
-              </button>
+              </Link>
             </li>
             <li>
               <Link to="/register">
