@@ -73,15 +73,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route GET /api/users/current
 // @access Private
 const getCurrentUser = asyncHandler(async (req, res) => {
-  const {_id, name, email } = await User.findById(req.user.id);
-
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-    message: `${email} successfully signed in`
-  })
-
+  res.status(200).json(req.user);
 });
 
 // generate token
