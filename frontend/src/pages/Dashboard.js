@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import GoalForm from "../components/GoalForm";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -15,7 +16,12 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1>Dashboard</h1>
+      <section className="heading">
+        <h3>Welcome {user && user.name} 👋</h3>
+        <p>Goals Dashboard</p>
+        
+        <GoalForm />
+      </section>
     </>
   );
 };
