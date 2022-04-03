@@ -15,15 +15,15 @@ const getGoals = asyncHandler(async (req, res) => {
 // @route POST /api/goals
 // @access Private
 const addGoal = asyncHandler(async (req, res) => {
-  const text = req.body.text;
+  const textContent = req.body.textContent;
   const userId = req.user.id;
 
-  if (!text) {
+  if (!textContent) {
     res.status(400);
     throw new Error("Enter a valid goal...");
   }
 
-  const newGoal = await Goal.create({ text, user: userId });
+  const newGoal = await Goal.create({ textContent, user: userId });
 
   res.status(200).json(newGoal);
 });

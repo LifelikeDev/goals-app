@@ -3,28 +3,28 @@ import { useDispatch } from "react-redux";
 import { addGoal } from "../features/goals/goalSlice";
 
 const GoalForm = () => {
-  const [goalText, setGoalText] = useState("");
+  const [textContent, setTextContent] = useState("");
   const dispatch = useDispatch();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(addGoal({goalText}));
+    dispatch(addGoal({textContent}));
 
-    setGoalText("");
+    setTextContent("");
   };
 
   return (
     <section className="form">
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
-          <label htmlFor="goalText" className="goal-label">Add Goal</label>
+          <label htmlFor="textContent" className="goal-label">Add Goal</label>
           <input
             type="text"
-            name="goalText"
-            id="goalText"
-            value={goalText}
-            onChange={(e) => setGoalText(e.target.value)}
+            name="textContent"
+            id="textContent"
+            value={textContent}
+            onChange={(e) => setTextContent(e.target.value)}
           />
         </div>
         <div className="form-group">
