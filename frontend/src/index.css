@@ -94,9 +94,18 @@ h3 {
 
 .goal {
   background-color: #f4f4f4;
+  color: #828282;
+  font-size: 1rem;
+  font-weight: 400;
   margin: 10px 0;
   padding: 20px 0 10px;
   position: relative;
+}
+
+.goal-item {
+  color: #000 !important;
+  font-size: 1.25em;
+  padding: 0 .5rem;
 }
 
 .goal .close {
