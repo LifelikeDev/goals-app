@@ -113,6 +113,7 @@ h3 {
   top: 10px;
   right: 15px;
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
   border: none;
   background: none;
 }
